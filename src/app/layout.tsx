@@ -68,37 +68,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${outfit.variable} h-full scroll-smooth antialiased`}
     >
       <body
-        className="min-h-full bg-[#020817] text-slate-100 selection:bg-blue-500/25 selection:text-blue-200"
+        className="min-h-full bg-[#FCFBF9] text-stone-800 selection:bg-red-100 selection:text-red-800"
         style={{ fontFamily: "var(--font-inter), var(--font-geist-sans), sans-serif" }}
       >
-        {/* Global mouse-follow glow — lightweight, no external deps */}
-        <div id="mouse-glow" className="mouse-glow" aria-hidden="true" suppressHydrationWarning />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                var glow = document.getElementById('mouse-glow');
-                if (!glow) return;
-                var x = window.innerWidth / 2, y = window.innerHeight / 2;
-                var targetX = x, targetY = y;
-                var animFrame;
-                function lerp(a, b, t) { return a + (b - a) * t; }
-                function update() {
-                  x = lerp(x, targetX, 0.06);
-                  y = lerp(y, targetY, 0.06);
-                  glow.style.left = x + 'px';
-                  glow.style.top = y + 'px';
-                  animFrame = requestAnimationFrame(update);
-                }
-                document.addEventListener('mousemove', function(e) {
-                  targetX = e.clientX;
-                  targetY = e.clientY;
-                });
-                update();
-              })();
-            `,
-          }}
-        />
         {children}
       </body>
     </html>

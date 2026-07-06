@@ -8,15 +8,11 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-950 border-t border-white/5 relative overflow-hidden bg-grid-fine">
-      {/* Background glow orb */}
-      <div className="glow-blur glow-blue float-orb w-[250px] h-[250px] bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 opacity-15" />
+    <footer className="bg-[#1C1917] border-t border-stone-800 relative overflow-hidden">
 
       {/* Portfolio Showcase Banner */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10 z-10 relative">
-        <div className="group relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-blue-500/5 hover:shadow-blue-500/10 transition-all duration-700">
-          {/* Glow border effect on hover */}
-          <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-sm" />
+        <div className="group relative rounded-2xl overflow-hidden border border-stone-800 shadow-2xl transition-all duration-700">
           
           <div className="relative rounded-2xl overflow-hidden">
             <Image
@@ -29,7 +25,7 @@ export default function Footer() {
               priority={false}
             />
             {/* Bottom gradient overlay */}
-            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#1C1917] to-transparent" />
           </div>
         </div>
       </div>
@@ -41,12 +37,12 @@ export default function Footer() {
           {/* Logo & Subtitle */}
           <div className="flex flex-col items-center md:items-start space-y-2 text-center md:text-left">
             <span
-              className="font-bold text-lg tracking-wider text-gradient-blue"
+              className="font-black text-lg tracking-wider text-gradient-blue uppercase"
               style={{ fontFamily: "var(--font-outfit)" }}
             >
               Someswararao Tarra
             </span>
-            <span className="text-xs text-slate-500 font-semibold tracking-wide uppercase font-mono">
+            <span className="text-[10px] text-stone-400 font-bold tracking-wider uppercase font-mono">
               Cloud & DevOps Engineer | Data Science Professional
             </span>
           </div>
@@ -57,7 +53,7 @@ export default function Footer() {
               href="https://github.com/someshtarra"
               target="_blank"
               rel="noopener noreferrer"
-              className="group p-2.5 rounded-xl bg-slate-900 border border-white/5 text-slate-400 hover:text-blue-400 hover:border-blue-500/30 transition-all duration-300 shadow-md"
+              className="group p-2.5 rounded-full bg-stone-800 border border-stone-700 text-stone-400 hover:text-white hover:bg-[#E23744] hover:border-transparent transition-all duration-300 shadow-md"
               aria-label="GitHub Profile"
             >
               <GithubIcon className="w-4 h-4" />
@@ -66,14 +62,14 @@ export default function Footer() {
               href="https://linkedin.com/in/someswararao-tarra-575b63203"
               target="_blank"
               rel="noopener noreferrer"
-              className="group p-2.5 rounded-xl bg-slate-900 border border-white/5 text-slate-400 hover:text-blue-400 hover:border-blue-500/30 transition-all duration-300 shadow-md"
+              className="group p-2.5 rounded-full bg-stone-800 border border-stone-700 text-stone-400 hover:text-white hover:bg-[#E23744] hover:border-transparent transition-all duration-300 shadow-md"
               aria-label="LinkedIn Profile"
             >
               <LinkedinIcon className="w-4 h-4" />
             </a>
             <a
               href="mailto:someswararaotarra@gmail.com"
-              className="group p-2.5 rounded-xl bg-slate-900 border border-white/5 text-slate-400 hover:text-blue-400 hover:border-blue-500/30 transition-all duration-300 shadow-md"
+              className="group p-2.5 rounded-full bg-stone-800 border border-stone-700 text-stone-400 hover:text-white hover:bg-[#E23744] hover:border-transparent transition-all duration-300 shadow-md"
               aria-label="Email Me"
             >
               <Mail className="w-4 h-4" />
@@ -83,13 +79,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom copyright section */}
-        <div className="mt-10 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-medium">
+        <div className="mt-10 pt-8 border-t border-stone-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500 font-bold">
           <div>
             &copy; {currentYear} Someswararao Tarra. All rights reserved.
           </div>
-          <div className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-slate-500">
+          <div className="flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-wider text-stone-400">
             <span>Built with Next.js, Tailwind CSS & Framer Motion</span>
-            <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500/20" />
+            <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
           </div>
         </div>
       </div>

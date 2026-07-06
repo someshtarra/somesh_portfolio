@@ -73,18 +73,18 @@ const fallbackRepos: Repo[] = [
 ];
 
 const languageStyles: Record<string, { accent: string; bg: string; border: string }> = {
-  Python: { accent: "#3b82f6", bg: "rgba(59,130,246,0.08)", border: "rgba(59,130,246,0.2)" },
-  Shell: { accent: "#f59e0b", bg: "rgba(245,158,11,0.08)", border: "rgba(245,158,11,0.2)" },
-  Bash: { accent: "#10b981", bg: "rgba(16,185,129,0.08)", border: "rgba(16,185,129,0.2)" },
-  HTML: { accent: "#ec4899", bg: "rgba(236,72,153,0.08)", border: "rgba(236,72,153,0.2)" },
-  CSS: { accent: "#e11d48", bg: "rgba(225,29,72,0.08)", border: "rgba(225,29,72,0.2)" },
-  TypeScript: { accent: "#0ea5e9", bg: "rgba(14,165,233,0.08)", border: "rgba(14,165,233,0.2)" },
-  JavaScript: { accent: "#eab308", bg: "rgba(234,179,8,0.08)", border: "rgba(234,179,8,0.2)" },
-  "HCL / Terraform": { accent: "#a855f7", bg: "rgba(168,85,247,0.08)", border: "rgba(168,85,247,0.2)" },
+  Python: { accent: "#E23744", bg: "#FFF0F0", border: "#FECDD3" },
+  Shell: { accent: "#FF7E00", bg: "#FFF7ED", border: "#FFD8A8" },
+  Bash: { accent: "#FF7E00", bg: "#FFF7ED", border: "#FFD8A8" },
+  HTML: { accent: "#EC4899", bg: "#FDF2F8", border: "#FBCFE8" },
+  CSS: { accent: "#E11D48", bg: "#FFF1F2", border: "#FECDD3" },
+  TypeScript: { accent: "#3B82F6", bg: "#EFF6FF", border: "#BFDBFE" },
+  JavaScript: { accent: "#EAB308", bg: "#FEF9C3", border: "#FEF08A" },
+  "HCL / Terraform": { accent: "#8B5CF6", bg: "#F5F3FF", border: "#DDD6FE" },
 };
 
 const getLanguageStyle = (lang: string) => {
-  return languageStyles[lang] || { accent: "#64748b", bg: "rgba(100,116,139,0.08)", border: "rgba(100,116,139,0.2)" };
+  return languageStyles[lang] || { accent: "#64748b", bg: "#F8FAFC", border: "#E2E8F0" };
 };
 
 export default function GitHubSection() {
@@ -122,8 +122,7 @@ export default function GitHubSection() {
         } else {
           setRepos(fallbackRepos);
         }
-      } catch (err) {
-        console.warn("GitHub fetch failed, loading offline fallback repositories:", err);
+      } catch {
         setErrorOccurred(true);
         setRepos(fallbackRepos);
       } finally {
@@ -134,11 +133,8 @@ export default function GitHubSection() {
   }, []);
 
   return (
-    <section id="github" className="py-28 relative overflow-hidden">
-      <div className="absolute inset-0 bg-slate-950/20" />
-      <div className="glow-blur glow-purple float-orb w-[400px] h-[400px] bottom-1/4 right-0 translate-x-1/3 opacity-25" />
-      <div className="glow-blur glow-blue float-orb-slow w-[300px] h-[300px] top-1/4 left-0 -translate-x-1/4 opacity-20" />
-
+    <section id="github-section" className="py-28 relative overflow-hidden bg-[#F7F6F5]">
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
         
         {/* Section Header */}
@@ -148,26 +144,26 @@ export default function GitHubSection() {
             GitHub
           </span>
           <h2
-            className="text-4xl sm:text-5xl font-bold tracking-tight text-white"
+            className="text-4xl sm:text-5xl font-bold tracking-tight text-stone-900"
             style={{ fontFamily: "var(--font-outfit)" }}
           >
             Building In{" "}
             <span className="text-gradient-blue">Public</span>
           </h2>
-          <div className="w-16 h-[3px] rounded-full" style={{ background: "linear-gradient(90deg, #3b82f6, #a855f7, #22d3ee)" }} />
+          <div className="w-16 h-[3px] rounded-full" style={{ background: "linear-gradient(90deg, #E23744, #FF7E00)" }} />
         </div>
 
         {/* Repos Grid */}
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="glass-card p-6 rounded-2xl border border-white/5 animate-pulse h-48 flex flex-col justify-between">
+              <div key={i} className="glass-card p-6 rounded-[24px] border border-stone-200/60 animate-pulse h-48 flex flex-col justify-between bg-white">
                 <div className="space-y-3">
-                  <div className="h-4 bg-slate-800 rounded w-2/3"></div>
-                  <div className="h-3 bg-slate-800 rounded w-full"></div>
-                  <div className="h-3 bg-slate-800 rounded w-5/6"></div>
+                  <div className="h-4 bg-stone-100 rounded w-2/3"></div>
+                  <div className="h-3 bg-stone-100 rounded w-full"></div>
+                  <div className="h-3 bg-stone-100 rounded w-5/6"></div>
                 </div>
-                <div className="h-4 bg-slate-800 rounded w-1/3"></div>
+                <div className="h-4 bg-stone-100 rounded w-1/3"></div>
               </div>
             ))}
           </div>
@@ -182,14 +178,14 @@ export default function GitHubSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.45, delay: idx * 0.06 }}
-                  className="glass-card rounded-2xl group hover:-translate-y-1 text-left flex flex-col justify-between overflow-hidden"
+                  className="glass-card rounded-[24px] group text-left flex flex-col justify-between overflow-hidden hover:scale-[1.01] transition-transform bg-white border border-stone-200/60"
                 >
                   {/* Top accent border representing language color */}
                   <div className="h-[2px] w-full" style={{ background: `linear-gradient(90deg, ${langStyle.accent}, transparent)` }} />
                   
                   <div className="p-6 flex flex-col flex-1 justify-between">
                     <div>
-                      <div className="flex items-center justify-between mb-4 text-slate-500">
+                      <div className="flex items-center justify-between mb-4 text-stone-500">
                         <FolderGit2 className="w-5 h-5" style={{ color: langStyle.accent }} />
                         <span
                           className="text-[10px] font-bold font-mono uppercase tracking-widest px-2.5 py-0.5 rounded-lg border"
@@ -204,23 +200,23 @@ export default function GitHubSection() {
                       </div>
 
                       <h3
-                        className="font-mono text-[14px] font-bold text-white mb-2 tracking-wide group-hover:text-blue-300 transition-colors duration-300 truncate"
+                        className="font-mono text-[14px] font-bold text-stone-900 mb-2 tracking-wide group-hover:text-[#E23744] transition-colors duration-300 truncate"
                       >
                         {repo.name}
                       </h3>
 
-                      <p className="text-xs text-slate-400 leading-relaxed font-normal line-clamp-3">
+                      <p className="text-xs text-stone-600 leading-relaxed font-semibold line-clamp-3">
                         {repo.description}
                       </p>
                     </div>
 
-                    <div className="flex items-center justify-between pt-4 mt-5 border-t border-white/5 text-[11px] font-mono text-slate-500">
-                      <div className="flex gap-4">
-                        <span className="flex items-center gap-1 hover:text-white transition">
+                    <div className="flex items-center justify-between pt-4 mt-5 border-t border-stone-200/50 text-[11px] font-mono text-stone-500">
+                      <div className="flex gap-4 font-semibold">
+                        <span className="flex items-center gap-1 hover:text-stone-900 transition">
                           <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500/20" />
                           {repo.stargazers_count}
                         </span>
-                        <span className="flex items-center gap-1 hover:text-white transition">
+                        <span className="flex items-center gap-1 hover:text-stone-900 transition">
                           <GitFork className="w-3.5 h-3.5 text-blue-400" />
                           {repo.forks_count}
                         </span>
@@ -229,7 +225,7 @@ export default function GitHubSection() {
                         href={repo.html_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-slate-400 hover:text-white transition duration-200"
+                        className="flex items-center gap-1 text-stone-400 hover:text-stone-950 transition duration-200 font-semibold"
                       >
                         <span>Source</span>
                         <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -244,7 +240,7 @@ export default function GitHubSection() {
 
         {/* Info Notification if using local Fallback */}
         {errorOccurred && !loading && (
-          <div className="text-center mt-6 text-xs text-slate-500">
+          <div className="text-center mt-6 text-xs text-stone-500 font-semibold">
             * Displaying offline replica of repositories due to GitHub API rate limits.
           </div>
         )}
@@ -255,11 +251,11 @@ export default function GitHubSection() {
             href="https://github.com/someshtarra"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative inline-flex items-center gap-2 px-7 py-3 text-sm font-semibold rounded-xl border border-white/8 hover:border-blue-500/40 bg-slate-900/60 hover:bg-slate-900 text-slate-300 hover:text-white shadow-md transition duration-300 overflow-hidden"
+            className="group relative inline-flex items-center gap-2 px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-full border border-stone-200 bg-white hover:bg-stone-50 text-stone-700 hover:text-stone-950 shadow-sm transition duration-300"
           >
-            <GithubIcon className="w-4 h-4 text-slate-400" />
+            <GithubIcon className="w-4 h-4 text-stone-400" />
             <span>Explore Full GitHub Profile</span>
-            <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <ArrowUpRight className="w-4 h-4 text-stone-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
         </div>
 

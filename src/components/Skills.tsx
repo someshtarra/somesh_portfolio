@@ -6,11 +6,13 @@ import { Cloud, GitBranch, Terminal, Code, Cpu, Award } from "lucide-react";
 const skillCategories = [
   {
     title: "AWS Cloud",
-    icon: <Cloud className="w-5 h-5 text-blue-400" />,
+    icon: <Cloud className="w-5 h-5 text-blue-500" />,
     accent: "card-accent-blue",
-    badgeColor: "rgba(59,130,246,0.1)",
-    badgeBorder: "rgba(59,130,246,0.2)",
-    badgeText: "#93c5fd",
+    gridSpan: "col-span-1 lg:col-span-2",
+    cardBg: "#F0F6FF",
+    badgeColor: "#EFF6FF",
+    badgeBorder: "#BFDBFE",
+    badgeText: "#1E40AF",
     skills: [
       "AWS EC2", "VPC", "IAM", "S3", "Route Tables", "Internet Gateway",
       "NAT Gateway", "Security Groups", "NACL", "Elastic Load Balancing",
@@ -19,22 +21,26 @@ const skillCategories = [
   },
   {
     title: "DevOps & Version Control",
-    icon: <GitBranch className="w-5 h-5 text-purple-400" />,
+    icon: <GitBranch className="w-5 h-5 text-purple-500" />,
     accent: "card-accent-purple",
-    badgeColor: "rgba(168,85,247,0.1)",
-    badgeBorder: "rgba(168,85,247,0.2)",
-    badgeText: "#d8b4fe",
+    gridSpan: "col-span-1",
+    cardBg: "#F5F3FF",
+    badgeColor: "#F5F3FF",
+    badgeBorder: "#DDD6FE",
+    badgeText: "#5B21B6",
     skills: [
       "Git", "GitHub", "CI/CD Fundamentals", "Jenkins", "Infrastructure Troubleshooting",
     ],
   },
   {
     title: "Linux & Scripting",
-    icon: <Terminal className="w-5 h-5 text-teal-400" />,
+    icon: <Terminal className="w-5 h-5 text-emerald-500" />,
     accent: "card-accent-teal",
-    badgeColor: "rgba(20,184,166,0.1)",
-    badgeBorder: "rgba(20,184,166,0.2)",
-    badgeText: "#5eead4",
+    gridSpan: "col-span-1 lg:col-span-2",
+    cardBg: "#F0FDF4",
+    badgeColor: "#F0FDF4",
+    badgeBorder: "#BBF7D0",
+    badgeText: "#166534",
     skills: [
       "Linux Administration", "Bash Scripting", "Shell Automation", "SSH", "SCP",
       "File Permissions", "Process Management", "Disk Management", "Networking",
@@ -43,20 +49,24 @@ const skillCategories = [
   },
   {
     title: "Programming",
-    icon: <Code className="w-5 h-5 text-amber-400" />,
+    icon: <Code className="w-5 h-5 text-amber-500" />,
     accent: "card-accent-amber",
-    badgeColor: "rgba(245,158,11,0.1)",
-    badgeBorder: "rgba(245,158,11,0.2)",
-    badgeText: "#fcd34d",
+    gridSpan: "col-span-1",
+    cardBg: "#FFFBEB",
+    badgeColor: "#FFFBEB",
+    badgeBorder: "#FEF3C7",
+    badgeText: "#92400E",
     skills: ["Python", "R Programming", "SQL", "Bash"],
   },
   {
     title: "Data Science & Machine Learning",
-    icon: <Cpu className="w-5 h-5 text-rose-400" />,
+    icon: <Cpu className="w-5 h-5 text-rose-500" />,
     accent: "card-accent-rose",
-    badgeColor: "rgba(244,63,94,0.1)",
-    badgeBorder: "rgba(244,63,94,0.2)",
-    badgeText: "#fda4af",
+    gridSpan: "col-span-1 lg:col-span-3",
+    cardBg: "#FFF1F2",
+    badgeColor: "#FFF1F2",
+    badgeBorder: "#FECDD3",
+    badgeText: "#9F1239",
     skills: [
       "Pandas", "NumPy", "Scikit-learn", "TensorFlow", "Keras",
       "Time Series Analysis", "Machine Learning", "Deep Learning",
@@ -67,10 +77,42 @@ const skillCategories = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-28 relative overflow-hidden">
-      <div className="absolute inset-0 bg-slate-950/40" />
-      <div className="glow-blur glow-blue float-orb w-[400px] h-[400px] top-1/4 right-0 translate-x-1/3 opacity-30" />
-      <div className="glow-blur glow-purple float-orb-slow w-[350px] h-[350px] bottom-1/4 left-0 -translate-x-1/4 opacity-25" />
+    <section id="skills" className="py-28 relative overflow-hidden bg-[#F7F6F5]">
+      {/* Background Decorations */}
+      <motion.div
+        animate={{
+          y: [0, -30, 0],
+          x: [0, 15, 0],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute w-72 h-72 rounded-full bg-gradient-to-br from-pink-500/5 to-purple-500/5 blur-3xl bottom-10 left-[-10%] -z-10 pointer-events-none hidden md:block"
+      />
+      <motion.div
+        animate={{
+          y: [0, 20, 0],
+        }}
+        transition={{
+          duration: 9,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1,
+        }}
+        className="absolute w-44 h-44 rounded-full bg-gradient-to-tr from-purple-500/5 to-indigo-500/5 backdrop-blur-[6px] border border-white/20 shadow-md top-12 right-[8%] -z-10 pointer-events-none"
+      />
+
+      {/* Transparent Dashboard Grid Pattern */}
+      <svg className="absolute inset-0 w-full h-full -z-10 opacity-[0.03] pointer-events-none select-none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="skills-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#78716c" strokeWidth="1" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#skills-grid)" />
+      </svg>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
 
@@ -81,17 +123,17 @@ export default function Skills() {
             Skills
           </span>
           <h2
-            className="text-4xl sm:text-5xl font-bold tracking-tight text-white"
+            className="text-4xl sm:text-5xl font-bold tracking-tight text-stone-900"
             style={{ fontFamily: "var(--font-outfit)" }}
           >
             Technical{" "}
-            <span className="text-gradient-blue">Arsenal</span>
+            <span className="text-gradient-blue">Competencies</span>
           </h2>
-          <div className="w-16 h-[3px] rounded-full" style={{ background: "linear-gradient(90deg, #3b82f6, #a855f7, #22d3ee)" }} />
+          <div className="w-16 h-[3px] rounded-full" style={{ background: "linear-gradient(90deg, #E23744, #FF7E00)" }} />
         </div>
 
-        {/* Skill Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Skill Bento Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, idx) => (
             <motion.div
               key={idx}
@@ -99,17 +141,17 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.55, delay: idx * 0.1 }}
-              className={`${category.accent} glass-card p-6 rounded-2xl flex flex-col items-start text-left group hover:-translate-y-1`}
+              className={`${category.accent} ${category.gridSpan} glass-card p-6 rounded-[24px] flex flex-col items-start text-left group`}
+              style={{ background: category.cardBg }}
             >
               {/* Category Title */}
-              <div className="flex items-center gap-3 mb-5 pb-4 border-b border-white/5 w-full">
+              <div className="flex items-center gap-3 mb-5 pb-4 border-b border-stone-200/50 w-full">
                 <div
-                  className="p-2.5 rounded-xl border border-white/8 group-hover:scale-110 transition-transform duration-300 shrink-0"
-                  style={{ background: "rgba(8,14,30,0.8)" }}
+                  className="p-2.5 rounded-xl border border-stone-200 bg-white group-hover:scale-110 transition-transform duration-300 shrink-0"
                 >
                   {category.icon}
                 </div>
-                <h3 className="text-[15px] font-bold text-white tracking-wide">
+                <h3 className="text-[15px] font-extrabold text-stone-900 tracking-wide">
                   {category.title}
                 </h3>
               </div>
@@ -119,7 +161,7 @@ export default function Skills() {
                 {category.skills.map((skill, sIdx) => (
                   <span
                     key={sIdx}
-                    className="px-3 py-1.5 text-[11px] font-semibold font-mono rounded-lg transition-all duration-200 hover:scale-105"
+                    className="px-3 py-1.5 text-[11px] font-black font-mono rounded-lg transition-all duration-200 hover:scale-105"
                     style={{
                       background: category.badgeColor,
                       border: `1px solid ${category.badgeBorder}`,

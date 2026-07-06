@@ -6,31 +6,69 @@ import { User, GraduationCap, Server, Code, FileText } from "lucide-react";
 export default function About() {
   const cards = [
     {
-      icon: <GraduationCap className="w-6 h-6 text-purple-400" />,
+      icon: <GraduationCap className="w-6 h-6 text-purple-600" />,
       accent: "card-accent-purple",
+      iconBg: "#FAF5FF",
       title: "M.Sc. Data Science — VIT Vellore",
       desc: "Completed M.Sc. in Data Science in 2025 from VIT Vellore (CGPA 8.60), building a strong foundation in statistics, ML, and programming.",
     },
     {
-      icon: <Server className="w-6 h-6 text-blue-400" />,
+      icon: <Server className="w-6 h-6 text-[#E23744]" />,
       accent: "card-accent-blue",
+      iconBg: "#FFF0F0",
       title: "Cloud, DevOps & Linux Enthusiast",
       desc: "Hands-on with AWS EC2/VPC/IAM/S3, Linux administration, Bash scripting, and automation pipelines. Passionate about infrastructure and cybersecurity.",
     },
     {
-      icon: <Code className="w-6 h-6 text-teal-400" />,
-      accent: "card-accent-teal",
+      icon: <Code className="w-6 h-6 text-[#FF7E00]" />,
+      accent: "card-accent-amber",
+      iconBg: "#FFF7ED",
       title: "Data-Driven Developer",
       desc: "Proficient in Python, R, SQL, Pandas, NumPy, Power BI, and ML frameworks — delivering predictive models and data insights from real datasets.",
     },
   ];
 
   return (
-    <section id="about" className="py-28 relative overflow-hidden">
-      {/* Section background */}
-      <div className="absolute inset-0 bg-slate-950/30" />
-      <div className="glow-blur glow-purple float-orb-slow w-[400px] h-[400px] top-0 right-0 translate-x-1/3 opacity-30" />
-      <div className="glow-blur glow-blue float-orb w-[300px] h-[300px] bottom-0 left-0 -translate-x-1/4 opacity-25" />
+    <section id="about" className="py-28 relative overflow-hidden bg-[#FCFBF9]">
+      {/* Background Decorations */}
+      <motion.div
+        animate={{
+          y: [0, 25, 0],
+          x: [0, -10, 0],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute w-56 h-56 rounded-full bg-gradient-to-tr from-cyan-500/8 to-blue-500/5 blur-xl top-10 right-[-10%] -z-10 pointer-events-none hidden md:block"
+      />
+      <motion.div
+        animate={{
+          y: [0, -20, 0],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1,
+        }}
+        className="absolute w-36 h-36 rounded-full bg-gradient-to-br from-blue-500/5 to-purple-500/5 backdrop-blur-[4px] border border-white/20 shadow-md bottom-12 left-[5%] -z-10 pointer-events-none"
+      />
+
+      {/* Translucent Scatter Plot SVG */}
+      <svg className="absolute left-[8%] top-[15%] w-[200px] h-[120px] -z-10 opacity-[0.04] pointer-events-none select-none hidden lg:block" viewBox="0 0 200 120" fill="none">
+        <circle cx="20" cy="90" r="3" fill="#E23744" />
+        <circle cx="40" cy="70" r="4" fill="#FF7E00" />
+        <circle cx="60" cy="80" r="3" fill="#2563eb" />
+        <circle cx="80" cy="50" r="5" fill="#E23744" />
+        <circle cx="100" cy="60" r="3.5" fill="#FF7E00" />
+        <circle cx="120" cy="30" r="4" fill="#2563eb" />
+        <circle cx="140" cy="40" r="3" fill="#E23744" />
+        <circle cx="160" cy="20" r="5.5" fill="#FF7E00" />
+        <line x1="0" y1="110" x2="180" y2="110" stroke="#78716c" strokeWidth="1" />
+        <line x1="10" y1="10" x2="10" y2="120" stroke="#78716c" strokeWidth="1" />
+      </svg>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
 
@@ -41,13 +79,13 @@ export default function About() {
             About Me
           </span>
           <h2
-            className="text-4xl sm:text-5xl font-bold tracking-tight text-white"
+            className="text-4xl sm:text-5xl font-bold tracking-tight text-stone-900"
             style={{ fontFamily: "var(--font-outfit)" }}
           >
             My Journey &{" "}
             <span className="text-gradient-blue">Mission</span>
           </h2>
-          <div className="w-16 h-[3px] rounded-full" style={{ background: "linear-gradient(90deg, #3b82f6, #a855f7, #22d3ee)" }} />
+          <div className="w-16 h-[3px] rounded-full" style={{ background: "linear-gradient(90deg, #E23744, #FF7E00)" }} />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-center mb-20">
@@ -61,30 +99,14 @@ export default function About() {
             className="lg:col-span-5 flex flex-col items-center justify-center"
           >
             <div className="relative w-64 h-64 sm:w-80 sm:h-80 group">
-              {/* Multi-layer glow */}
-              <div className="absolute -inset-4 bg-gradient-to-br from-blue-500/20 via-purple-600/15 to-cyan-500/10 rounded-3xl blur-2xl opacity-60 group-hover:opacity-90 transition duration-700" />
-              <div className="absolute -inset-2 bg-gradient-to-br from-blue-500/30 to-purple-600/25 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-500" />
-
-              {/* Animated border */}
-              <div
-                className="absolute -inset-[2px] rounded-2xl opacity-50 group-hover:opacity-100 transition duration-700"
-                style={{
-                  background: "linear-gradient(135deg, #3b82f6, #a855f7, #22d3ee, #3b82f6)",
-                  backgroundSize: "300% 300%",
-                  animation: "borderRotate 4s ease infinite",
-                }}
-              />
-
               {/* Image Frame */}
-              <div className="relative w-full h-full rounded-2xl overflow-hidden bg-slate-950">
+              <div className="relative w-full h-full rounded-[32px] overflow-hidden border-2 border-stone-200 shadow-lg bg-white">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/profile-side.jpg"
                   alt="Someswararao Tarra"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-600"
                 />
-                {/* Inner vignette */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent pointer-events-none" />
               </div>
             </div>
 
@@ -94,10 +116,9 @@ export default function About() {
                 href="https://drive.google.com/file/d/1eg58aLQpJIHPvI5hxmGzMMp-T8uq7Nmg/view?usp=share_link"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center gap-2.5 px-7 py-3 text-sm font-semibold rounded-xl border border-blue-500/25 hover:border-blue-400/50 bg-blue-500/8 hover:bg-blue-500/15 text-slate-200 hover:text-white transition-all duration-300 overflow-hidden"
+                className="group relative inline-flex items-center gap-2.5 px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-full border border-stone-200 bg-white hover:bg-[#FFF0F0] hover:border-[#E23744]/20 text-stone-700 transition-all duration-300 shadow-sm"
               >
-                <span className="absolute inset-0 shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <FileText className="w-4 h-4 text-blue-400 relative z-10" />
+                <FileText className="w-4 h-4 text-[#E23744] relative z-10" />
                 <span className="relative z-10">View Full Resume / CV</span>
               </a>
             </div>
@@ -112,41 +133,41 @@ export default function About() {
             className="lg:col-span-7 flex flex-col justify-center text-left space-y-6"
           >
             <h3
-              className="text-2xl sm:text-3xl font-bold text-white leading-snug"
+              className="text-2xl sm:text-3xl font-extrabold text-stone-900 leading-snug"
               style={{ fontFamily: "var(--font-outfit)" }}
             >
               Aspiring IT Professional bridging Cloud Infrastructure and Data-Driven Decision Making.
             </h3>
 
-            <div className="space-y-4 text-slate-400 leading-relaxed text-[15px]">
+            <div className="space-y-4 text-stone-850 font-bold leading-relaxed text-[15px]">
               <p>
                 Hi! I&apos;m Someswararao Tarra, based in{" "}
-                <span className="text-slate-200 font-medium">Hyderabad, Telangana, India</span>. I recently completed my{" "}
-                <span className="text-slate-200 font-medium">M.Sc. in Data Science (2025) from VIT Vellore (CGPA 8.60)</span> and
+                <span className="text-stone-950 font-black underline decoration-[#E23744]/20">Hyderabad, Telangana, India</span>. I recently completed my{" "}
+                <span className="text-stone-950 font-black">M.Sc. in Data Science (2025) from VIT Vellore (CGPA 8.60)</span> and
                 hold a B.Sc. in Mathematics, Physics & Computer Science from Padmavathi Degree College (CGPA 8.50).
               </p>
               <p>
                 I have hands-on experience in{" "}
-                <span className="text-slate-200 font-medium">Linux Administration, Bash Scripting, Git/GitHub, AWS fundamentals, Python, SQL, Data Analytics, and Machine Learning</span>.
+                <span className="text-stone-950 font-black">Linux Administration, Bash Scripting, Git/GitHub, AWS fundamentals, Python, SQL, Data Analytics, and Machine Learning</span>.
                 During my internship at SentinelGuard AI, I engineered ML models that improved predictive accuracy by 15% and processed 5M+ records using Python and SQL.
               </p>
               <p>
-                I&apos;m passionate about <span className="text-slate-200 font-medium">automation, cloud technologies, cybersecurity, and data-driven decision-making</span> — building systems that host, process, and secure data at scale.
+                I&apos;m passionate about <span className="text-stone-950 font-black">automation, cloud technologies, cybersecurity, and data-driven decision-making</span> — building systems that host, process, and secure data at scale.
               </p>
-              <p className="text-blue-300 font-medium">
-                Seeking entry-level opportunities in Linux Administration, DevOps, SOC Analyst, or Data Science roles where I can add immediate value and continue growing technically.
+              <p className="text-[#E23744] font-extrabold uppercase tracking-wider text-xs bg-[#FFF0F0] px-4 py-2 rounded-xl inline-flex self-start border border-[#E23744]/10">
+                Seeking entry-level opportunities in Linux Administration, DevOps, SOC Analyst, or Data Science roles.
               </p>
             </div>
 
             {/* Core Values */}
-            <div className="grid grid-cols-2 gap-5 pt-5 border-t border-white/5">
+            <div className="grid grid-cols-2 gap-5 pt-6 border-t border-stone-200">
               <div>
-                <span className="text-[10px] uppercase tracking-widest text-slate-600 font-mono font-bold block mb-1">Location</span>
-                <p className="text-slate-300 font-semibold">Hyderabad, Telangana, India</p>
+                <span className="text-[10px] uppercase tracking-widest text-stone-600 font-mono font-black block mb-1">Location</span>
+                <p className="text-stone-950 font-black">Hyderabad, Telangana, India</p>
               </div>
               <div>
-                <span className="text-[10px] uppercase tracking-widest text-slate-600 font-mono font-bold block mb-1">Specialization</span>
-                <p className="text-slate-300 font-semibold">Cloud / DevOps / Data Science / ML</p>
+                <span className="text-[10px] uppercase tracking-widest text-stone-600 font-mono font-black block mb-1">Specialization</span>
+                <p className="text-stone-950 font-black">Cloud / DevOps / Data Science / ML</p>
               </div>
             </div>
           </motion.div>
@@ -165,24 +186,23 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.55, delay: idx * 0.12 }}
-              className={`${card.accent} glass-card p-6 rounded-2xl text-left group hover:-translate-y-1`}
+              className={`${card.accent} glass-card p-6 rounded-[24px] text-left group`}
             >
               <div className="flex items-start gap-4">
                 <div
-                  className="p-3 rounded-xl border border-white/8 shrink-0 group-hover:scale-110 transition-transform duration-300"
-                  style={{ background: "rgba(8,14,30,0.8)" }}
+                  className="p-3 rounded-2xl border border-stone-250 shrink-0 group-hover:scale-110 transition-transform duration-300"
+                  style={{ background: card.iconBg }}
                 >
                   {card.icon}
                 </div>
                 <div>
-                  <h3 className="font-bold text-white mb-1.5 text-[15px] leading-snug">{card.title}</h3>
-                  <p className="text-sm text-slate-400 leading-relaxed">{card.desc}</p>
+                  <h3 className="font-extrabold text-stone-900 mb-1.5 text-[15px] leading-snug">{card.title}</h3>
+                  <p className="text-sm text-stone-800 font-bold leading-relaxed">{card.desc}</p>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );

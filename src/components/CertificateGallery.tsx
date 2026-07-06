@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Award, X, Download, ExternalLink, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 
@@ -153,11 +153,11 @@ const certificates: Certificate[] = [
 ];
 
 const categoryColors: Record<string, string> = {
-  Cloud: "bg-orange-500/10 border-orange-500/20 text-orange-400",
-  Internship: "bg-blue-500/10 border-blue-500/20 text-blue-400",
-  "Data Science": "bg-emerald-500/10 border-emerald-500/20 text-emerald-400",
-  Technical: "bg-purple-500/10 border-purple-500/20 text-purple-400",
-  Achievement: "bg-pink-500/10 border-pink-500/20 text-pink-400",
+  Cloud: "bg-orange-50 border-orange-200 text-orange-600",
+  Internship: "bg-blue-50 border-blue-200 text-blue-600",
+  "Data Science": "bg-emerald-50 border-emerald-200 text-emerald-600",
+  Technical: "bg-purple-50 border-purple-200 text-purple-600",
+  Achievement: "bg-pink-50 border-pink-200 text-pink-600",
 };
 
 const allCategories = ["All", "Cloud", "Internship", "Data Science", "Technical", "Achievement"];
@@ -167,9 +167,9 @@ export default function CertificateGallery() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [currentIdx, setCurrentIdx] = useState(0);
 
-  const filtered = certificates.filter(
+  const filtered = useMemo(() => certificates.filter(
     (c) => activeFilter === "All" || c.category === activeFilter
-  );
+  ), [activeFilter]);
 
   const openCert = (cert: Certificate) => {
     setSelectedCert(cert);
@@ -213,37 +213,39 @@ export default function CertificateGallery() {
   }, [selectedCert]);
 
   return (
-    <section id="certificates-gallery" className="py-24 relative overflow-hidden bg-slate-950/30">
-      <div className="glow-blur glow-purple w-[400px] h-[400px] top-1/4 right-1/4" />
-      <div className="glow-blur glow-blue w-[350px] h-[350px] bottom-1/3 left-1/4" />
+    <section id="certificates-gallery" className="py-24 relative overflow-hidden bg-[#FCFBF9]">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
 
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center space-y-3 mb-12">
-          <h2 className="text-xs uppercase tracking-widest text-blue-500 font-semibold font-mono flex items-center gap-2">
+        <div className="flex flex-col items-center text-center space-y-4 mb-16">
+          <span className="section-label">
             <Award className="w-3.5 h-3.5" />
             Gallery
+          </span>
+          <h2
+            className="text-4xl sm:text-5xl font-bold tracking-tight text-stone-900"
+            style={{ fontFamily: "var(--font-outfit)" }}
+          >
+            Certificates &{" "}
+            <span className="text-gradient-blue">Achievements</span>
           </h2>
-          <p className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-            Certificates & Achievements
-          </p>
-          <p className="text-slate-400 text-sm max-w-xl text-center">
+          <p className="text-stone-600 text-sm max-w-xl text-center leading-relaxed">
             A collection of certifications, virtual job simulations, and achievement badges earned through dedicated learning and practical experience.
           </p>
-          <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded"></div>
+          <div className="w-16 h-[3px] rounded-full" style={{ background: "linear-gradient(90deg, #E23744, #FF7E00)" }} />
         </div>
 
         {/* Filter Bar */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+        <div className="flex flex-wrap items-center justify-center gap-2.5 mb-12">
           {allCategories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveFilter(cat)}
-              className={`px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
+              className={`px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
                 activeFilter === cat
-                  ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md shadow-blue-500/20"
-                  : "bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700"
+                  ? "bg-gradient-to-r from-[#E23744] to-[#FF7E00] text-white border-transparent shadow-md shadow-[#E23744]/15 scale-102"
+                  : "bg-white border-stone-200 text-stone-850 hover:text-stone-950 hover:border-stone-300 border shadow-sm font-bold"
               }`}
             >
               {cat}
@@ -263,7 +265,7 @@ export default function CertificateGallery() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3, delay: idx * 0.05 }}
                 onClick={() => openCert(cert)}
-                className="group cursor-pointer glass-card rounded-xl overflow-hidden border border-slate-800 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-300 text-left"
+                className="group cursor-pointer glass-card rounded-[24px] overflow-hidden border border-stone-200/60 hover:border-[#E23744]/30 hover:shadow-lg transition-all duration-300 text-left bg-white"
               >
                 {/* Card Preview / Thumbnail Area */}
                 <div className={`relative h-36 bg-gradient-to-br ${cert.color} flex items-center justify-center overflow-hidden`}>
@@ -277,12 +279,12 @@ export default function CertificateGallery() {
                   ) : (
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-4xl select-none">{cert.icon}</span>
-                      <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">PDF Certificate</span>
+                      <span className="text-xs font-mono text-stone-850 uppercase tracking-widest font-black">PDF Certificate</span>
                     </div>
                   )}
                   {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2">
-                    <span className="flex items-center gap-1.5 text-xs font-semibold text-white bg-blue-600 px-3 py-1.5 rounded-full">
+                  <div className="absolute inset-0 bg-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2">
+                    <span className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-white bg-gradient-to-r from-[#E23744] to-[#FF7E00] px-4 py-2 rounded-full shadow-md">
                       <ZoomIn className="w-3.5 h-3.5" />
                       View Certificate
                     </span>
@@ -292,17 +294,17 @@ export default function CertificateGallery() {
                 {/* Card Info */}
                 <div className="p-5 space-y-3">
                   <div className="flex items-start justify-between gap-2">
-                    <h3 className="text-sm font-bold text-white leading-snug group-hover:text-blue-400 transition-colors line-clamp-2">
+                    <h3 className="text-sm font-extrabold text-stone-900 leading-snug group-hover:text-[#E23744] transition-colors line-clamp-2">
                       {cert.title}
                     </h3>
                   </div>
                   <div className="flex items-center justify-between">
-                    <p className="text-xs text-slate-400 font-medium">{cert.issuer}</p>
-                    <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${categoryColors[cert.category]}`}>
+                    <p className="text-xs text-stone-950 font-black">{cert.issuer}</p>
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${categoryColors[cert.category]}`}>
                       {cert.category}
                     </span>
                   </div>
-                  <p className="text-[11px] text-slate-500 font-mono">{cert.date}</p>
+                  <p className="text-[11px] text-stone-850 font-mono font-bold">{cert.date}</p>
                 </div>
               </motion.div>
             ))}
@@ -323,12 +325,12 @@ export default function CertificateGallery() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="glass-card rounded-xl p-4 text-center border border-slate-800"
+              className="glass-card rounded-[20px] p-5 text-center border border-stone-200/60 bg-white"
             >
-              <p className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              <p className="text-3xl font-black bg-gradient-to-r from-[#E23744] to-[#FF7E00] bg-clip-text text-transparent">
                 {stat.value}
               </p>
-              <p className="text-xs text-slate-400 mt-1">{stat.label}</p>
+              <p className="text-xs text-stone-750 mt-1.5 font-extrabold uppercase tracking-wider text-[10px]">{stat.label}</p>
             </motion.div>
           ))}
         </div>
@@ -348,7 +350,7 @@ export default function CertificateGallery() {
             aria-label={`Certificate: ${selectedCert.title}`}
           >
             {/* Backdrop */}
-            <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-md" />
+            <div className="absolute inset-0 bg-stone-900/60 backdrop-blur-md" />
 
             {/* Modal Content */}
             <motion.div
@@ -356,19 +358,19 @@ export default function CertificateGallery() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3 }}
-              className="relative z-10 w-full max-w-5xl max-h-[92vh] flex flex-col bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl"
+              className="relative z-10 w-full max-w-5xl max-h-[92vh] flex flex-col bg-white border border-stone-200 rounded-[24px] overflow-hidden shadow-2xl"
             >
               {/* Modal Header */}
-              <div className="flex items-start justify-between gap-4 p-4 sm:p-5 border-b border-slate-800 flex-shrink-0">
+              <div className="flex items-start justify-between gap-4 p-4 sm:p-5 border-b border-stone-200/60 flex-shrink-0 bg-white">
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-base sm:text-lg font-bold text-white leading-snug truncate">
+                  <h3 className="text-base sm:text-lg font-black text-stone-900 leading-snug truncate">
                     {selectedCert.title}
                   </h3>
                   <div className="flex items-center gap-2 mt-1 flex-wrap">
-                    <span className="text-xs text-slate-400">{selectedCert.issuer}</span>
-                    <span className="text-slate-700">·</span>
-                    <span className="text-xs text-slate-500 font-mono">{selectedCert.date}</span>
-                    <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${categoryColors[selectedCert.category]}`}>
+                    <span className="text-xs text-stone-900 font-extrabold">{selectedCert.issuer}</span>
+                    <span className="text-stone-300">·</span>
+                    <span className="text-xs text-stone-900 font-mono font-bold">{selectedCert.date}</span>
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${categoryColors[selectedCert.category]}`}>
                       {selectedCert.category}
                     </span>
                   </div>
@@ -377,7 +379,7 @@ export default function CertificateGallery() {
                   <a
                     href={selectedCert.file}
                     download
-                    className="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 transition"
+                    className="p-2 rounded-lg bg-stone-50 border border-stone-200 text-stone-500 hover:text-[#E23744] hover:border-[#E23744]/20 transition"
                     title="Download Certificate"
                     onClick={(e) => e.stopPropagation()}
                   >
@@ -387,7 +389,7 @@ export default function CertificateGallery() {
                     href={selectedCert.file}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 transition"
+                    className="p-2 rounded-lg bg-stone-50 border border-stone-200 text-stone-500 hover:text-[#E23744] hover:border-[#E23744]/20 transition"
                     title="Open in new tab"
                     onClick={(e) => e.stopPropagation()}
                   >
@@ -395,7 +397,7 @@ export default function CertificateGallery() {
                   </a>
                   <button
                     onClick={closeCert}
-                    className="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-rose-400 hover:border-rose-500/30 transition"
+                    className="p-2 rounded-lg bg-stone-50 border border-stone-200 text-stone-500 hover:text-red-500 hover:border-red-200 transition"
                     aria-label="Close modal"
                   >
                     <X className="w-4 h-4" />
@@ -413,7 +415,7 @@ export default function CertificateGallery() {
                     title={selectedCert.title}
                   />
                 ) : (
-                  <div className="flex items-center justify-center h-full p-4 bg-slate-900">
+                  <div className="flex items-center justify-center h-full p-4 bg-stone-50">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={selectedCert.file}
@@ -426,14 +428,14 @@ export default function CertificateGallery() {
                 {/* Prev / Next Navigation Arrows */}
                 <button
                   onClick={(e) => { e.stopPropagation(); navigateCert("prev"); }}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-900/80 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-600 transition backdrop-blur-sm"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 border border-stone-250 text-stone-600 hover:text-[#E23744] hover:border-stone-300 transition backdrop-blur-sm shadow-sm"
                   aria-label="Previous certificate"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
                 <button
                   onClick={(e) => { e.stopPropagation(); navigateCert("next"); }}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-900/80 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-600 transition backdrop-blur-sm"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 border border-stone-250 text-stone-600 hover:text-[#E23744] hover:border-stone-300 transition backdrop-blur-sm shadow-sm"
                   aria-label="Next certificate"
                 >
                   <ChevronRight className="w-5 h-5" />
@@ -441,11 +443,11 @@ export default function CertificateGallery() {
               </div>
 
               {/* Modal Footer with description and navigation count */}
-              <div className="flex items-center justify-between gap-4 px-5 py-3 border-t border-slate-800 flex-shrink-0">
-                <p className="text-xs text-slate-400 leading-relaxed line-clamp-2 max-w-xl">
+              <div className="flex items-center justify-between gap-4 px-5 py-3 border-t border-stone-200/60 flex-shrink-0 bg-white">
+                <p className="text-xs text-stone-600 leading-relaxed line-clamp-2 max-w-xl font-semibold">
                   {selectedCert.description}
                 </p>
-                <span className="text-xs font-mono text-slate-500 flex-shrink-0">
+                <span className="text-xs font-mono text-stone-500 flex-shrink-0 font-bold">
                   {currentIdx + 1} / {filtered.length}
                 </span>
               </div>
