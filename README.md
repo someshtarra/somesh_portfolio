@@ -1,6 +1,6 @@
-# Someswararao Tarra - Developer Portfolio Website
+# Someswararao Tarra - Devops/Data science/Cloud Engineer Portfolio Website
 
-A premium, modern, and fully responsive developer portfolio website designed for recruiters and hiring managers. This portfolio showcases hands-on engineering capabilities in AWS Cloud Architecture, Linux Administration, DevOps Automation, and Data Science.
+A premium, modern, and fully responsive Devops/Data science/Cloud Engineer portfolio website designed for recruiters and hiring managers. This portfolio showcases hands-on engineering capabilities in AWS Cloud Architecture, Linux Administration, DevOps Automation, and Data Science.
 
 Built using **Next.js (App Router)**, **TypeScript**, **Tailwind CSS**, **Framer Motion**, and **Lucide Icons**.
 
