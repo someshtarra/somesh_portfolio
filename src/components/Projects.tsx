@@ -65,22 +65,6 @@ const projectsList = [
   },
   {
     id: 4,
-    title: "Customer Churn Prediction Pipeline",
-    description:
-      "End-to-end machine learning pipeline for predicting customer churn including data preprocessing, feature engineering, model training with Random Forest, evaluation, and threshold analysis.",
-    highlights: [
-      "End-to-end ML pipeline design",
-      "Random Forest classification model",
-      "Threshold-optimized churn detection",
-    ],
-    tech: ["Python", "Pandas", "Scikit-learn", "Random Forest", "Classification Metrics", "EDA"],
-    categories: ["Machine Learning"],
-    github: "https://github.com/someshtarra/customer-churn",
-    demo: "#",
-    demoLabel: "View Project",
-  },
-  {
-    id: 5,
     title: "AWS Three-Tier Web Architecture",
     description:
       "Designed a highly available, secure AWS three-tier architecture with VPC, EC2 instances across public and private subnets, Application Load Balancer, Auto Scaling Groups, and NAT Gateway routing.",
@@ -97,7 +81,7 @@ const projectsList = [
     upcoming: true,
   },
   {
-    id: 6,
+    id: 5,
     title: "AWS VPC with Servers in Private Subnets & NAT Gateway",
     description:
       "Designed and implemented a secure AWS network infrastructure featuring a custom VPC, public and private subnets, NAT Gateways for outbound internet connectivity, and isolated application servers, based on AWS official guidelines.",
