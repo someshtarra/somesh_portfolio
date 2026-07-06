@@ -5,6 +5,7 @@ import Skills from "@/components/Skills";
 import HandsOnLabs from "@/components/HandsOnLabs";
 import Projects from "@/components/Projects";
 import Certifications from "@/components/Certifications";
+import CertificateGallery from "@/components/CertificateGallery";
 import Education from "@/components/Education";
 import GitHubSection from "@/components/GitHubSection";
 import ContactSection from "@/components/ContactSection";
@@ -21,6 +22,7 @@ export default function Home() {
         <HandsOnLabs />
         <Projects />
         <Certifications />
+        <CertificateGallery />
         <Education />
         <GitHubSection />
         <ContactSection />
