@@ -14,7 +14,20 @@ const categoryAccents: Record<string, { color: string; bg: string; border: strin
   "Deep Learning": { color: "#EC4899", bg: "#FDF2F8", border: "#FBCFE8" },
 };
 
-const projectsList = [
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  highlights: string[];
+  tech: string[];
+  categories: string[];
+  github: string;
+  demo: string;
+  demoLabel: string;
+  upcoming?: boolean;
+}
+
+const projectsList: Project[] = [
   {
     id: 1,
     title: "Disease & Pest Detection in Coffee Leaves using Efficient DET Algorithm & CNN",
