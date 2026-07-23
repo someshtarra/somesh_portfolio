@@ -16,7 +16,7 @@ const labs = [
     architecture: "Designed a VPC with public and private subnets across multiple availability zones, route tables, an Internet Gateway (IGW) for public servers, and a NAT Gateway for secure outbound private subnet routing.",
     tech: ["AWS VPC", "Subnets", "Route Tables", "Internet Gateway", "NAT Gateway"],
     learning: "Understood public vs. private subnets, routing tables, and the role of NAT Gateways in preventing incoming traffic to private instances while permitting outgoing requests.",
-    github: "https://github.com/someshtarra/aws-labs",
+    github: "https://github.com/someshtarra/somesh_portfolio",
   },
   {
     title: "Private EC2 Connectivity",
@@ -28,7 +28,7 @@ const labs = [
     architecture: "Configured secure connectivity models utilizing Bastion Hosts (Jump Boxes) and AWS Systems Manager Session Manager, restricting port access via Security Groups.",
     tech: ["AWS EC2", "Security Groups", "SSH Key Management", "SSM Session Manager"],
     learning: "Mastered multi-hop SSH routing configurations, transit rules, and IAM permissions required to execute secure, keyless SSM-based shell access.",
-    github: "https://github.com/someshtarra/aws-labs",
+    github: "https://github.com/someshtarra/somesh_portfolio",
   },
   {
     title: "VPC Peering Lab",
@@ -40,7 +40,7 @@ const labs = [
     architecture: "Built VPC peering connectivity between two distinct VPCs. Configured corresponding route tables, resolved CIDR block conflicts, and security rules.",
     tech: ["VPC Peering", "CIDR blocks", "Route Tables", "Security Groups"],
     learning: "Learned how CIDR blocks overlap checks work, how to create peering requests and accept them, and how route tables handle trans-VPC network routes.",
-    github: "https://github.com/someshtarra/aws-labs",
+    github: "https://github.com/someshtarra/somesh_portfolio",
   },
   {
     title: "Load Balancer & Health Checks",
@@ -52,7 +52,7 @@ const labs = [
     architecture: "Configured target groups and an Application Load Balancer (ALB) to handle incoming requests. Established custom HTTP path checks to run regular health monitors.",
     tech: ["AWS ALB", "Target Groups", "Health Checks", "Security Groups"],
     learning: "Acquired deep understanding of load balancing layers (Layer 7), path-based routing, target group registrations, and automatic traffic redirection from failing instances.",
-    github: "https://github.com/someshtarra/aws-labs",
+    github: "https://github.com/someshtarra/somesh_portfolio",
   },
   {
     title: "Linux Server Troubleshooting",
@@ -64,7 +64,7 @@ const labs = [
     architecture: "Simulated and successfully resolved real-world production outages: diagnosing SSH failures, high CPU/memory spikes, disk-full bottlenecks, systemd service crashes, and port conflicts.",
     tech: ["Linux Administration", "systemctl", "df / du", "top / htop", "netstat / lsof", "chmod / chown"],
     learning: "Learned to triage system limits, read service logs via journalctl, isolate disk bloats, and identify process port usage dynamically to restore operation.",
-    github: "https://github.com/someshtarra/linux-troubleshooting",
+    github: "https://github.com/someshtarra/somesh_portfolio",
   },
   {
     title: "Shell Automation",
@@ -76,7 +76,7 @@ const labs = [
     architecture: "Created production-ready Bash scripts that automate system health checks, log file rotations, folder backups, conditional process checks, and cron scheduling.",
     tech: ["Bash Scripting", "Shell Utilities", "Cron Jobs", "Process Automation"],
     learning: "Gained proficiency in write-safe bash scripting using error handling (set -e), environment variables, conditional checks, loop structures, and automated scheduling.",
-    github: "https://github.com/someshtarra/shell-scripts",
+    github: "https://github.com/someshtarra/somesh_portfolio",
   },
 ];
 
@@ -498,14 +498,19 @@ export default function HandsOnLabs() {
                             {[
                               { c: "Virtual Private Cloud", id: "production-vpc", role: "Establishes a software-defined, isolated logical network boundary for all cloud assets." },
                               { c: "Internet Gateway", id: "production-igw", role: "Acts as the dual-directional routing engine enabling edge internet access for the VPC." },
-                              { c: "Public Subnets", id: "production-subnet-public1-us-east-1a / production-subnet-public2-us-east-1b", role: "Hosts public-facing endpoints and managed NAT proxies accessible from external networks." },
-                              { c: "Private Subnets", id: "production-subnet-private1-us-east-1a / production-subnet-private2-us-east-1b", role: "Isolates backend application servers from direct external internet access." },
-                              { c: "NAT Gateways", id: "production-nat-public1-us-east-1a / production-nat-public2-us-east-1b", role: "Performs stateful outbound network address translation for backend servers inside private boundaries." },
-                              { c: "Elastic IP Addresses", id: "production-eip-us-east-1a / production-eip-us-east-1b", role: "Provides static, unchanging public IPv4 addresses dedicated exclusively to each NAT Gateway." },
-                              { c: "Application Load Balancer", id: "production-alb", role: "Implements an internet-facing reverse proxy to distribute incoming HTTP requests based on traffic volume." },
+                              { c: "Public Subnets", id: "production-subnet-public1 / public2", role: "Hosts public-facing edge endpoints, CloudFront origin paths, and managed NAT proxies." },
+                              { c: "Private App Subnets", id: "production-subnet-private1 / private2", role: "Isolates backend EC2 application servers from direct external internet access." },
+                              { c: "Isolated DB Subnets", id: "production-subnet-db1 / db2", role: "Dedicated subnet boundary housing Multi-AZ Amazon RDS database instances." },
+                              { c: "NAT Gateways", id: "production-nat-public1 / public2", role: "Performs stateful outbound network address translation for backend servers inside private boundaries." },
+                              { c: "Elastic IP Addresses", id: "production-eip1 / eip2", role: "Provides static, unchanging public IPv4 addresses dedicated exclusively to each NAT Gateway." },
+                              { c: "Application Load Balancer", id: "production-alb", role: "Implements an internet-facing reverse proxy with TLS/SSL termination to distribute HTTP/HTTPS requests." },
                               { c: "Target Group", id: "production-tg", role: "Maintains the active registry of healthy EC2 instances available to receive routed balancer traffic." },
                               { c: "Auto Scaling Group", id: "production-asg", role: "Automates horizontal scaling adjustments to keep the compute fleet sized correctly for real-time demand." },
-                              { c: "Launch Template", id: "production-LT", role: "Defines the golden configuration parameters used to launch new compute instances." },
+                              { c: "Launch Template & IAM", id: "production-LT / EC2-IAM-Role", role: "Defines instance launch parameters with IAM role credentials for keyless S3, EFS, and CloudWatch access." },
+                              { c: "Amazon RDS Multi-AZ", id: "production-[#E23744]-rds", role: "Provides highly available, fault-tolerant MySQL/PostgreSQL relational database with multi-zone failover." },
+                              { c: "Route 53 & ACM", id: "production-dns / ACM-cert", role: "Manages domain name resolution, SSL/TLS security certificates, and dynamic failover routing." },
+                              { c: "CloudFront & S3", id: "production-cdn / S3-bucket", role: "Delivers cached static assets via edge locations and provides persistent object storage." },
+                              { c: "Amazon EFS & EBS", id: "production-efs / ebs-storage", role: "Supplies POSIX shared network file systems and persistent block storage attached to app nodes." },
                               { c: "Simple Notification Service", id: "production-asg-topic", role: "Distributes real-time operational alerts regarding automated scaling events to system engineers." }
                             ].map((row, rIdx) => (
                               <tr key={rIdx} className="hover:bg-stone-50/50">
@@ -549,8 +554,10 @@ export default function HandsOnLabs() {
                             {[
                               { name: "production-subnet-public1-us-east-1a", az: "us-east-1a", cidr: "7.8.0.0/20", ips: "4091 Addresses", status: "Public Edge Zone" },
                               { name: "production-subnet-public2-us-east-1b", az: "us-east-1b", cidr: "7.8.16.0/20", ips: "4090 Addresses", status: "Public Edge Zone" },
-                              { name: "production-subnet-private1-us-east-1a", az: "us-east-1a", cidr: "7.8.128.0/20", ips: "4091 Addresses", status: "Hardened Private Zone" },
-                              { name: "production-subnet-private2-us-east-1b", az: "us-east-1b", cidr: "7.8.144.0/20", ips: "4091 Addresses", status: "Hardened Private Zone" }
+                              { name: "production-subnet-private1-us-east-1a", az: "us-east-1a", cidr: "7.8.128.0/20", ips: "4091 Addresses", status: "Hardened Private App Zone" },
+                              { name: "production-subnet-private2-us-east-1b", az: "us-east-1b", cidr: "7.8.144.0/20", ips: "4091 Addresses", status: "Hardened Private App Zone" },
+                              { name: "production-subnet-db1-us-east-1a", az: "us-east-1a", cidr: "7.8.200.0/24", ips: "251 Addresses", status: "Isolated Multi-AZ DB Zone" },
+                              { name: "production-subnet-db2-us-east-1b", az: "us-east-1b", cidr: "7.8.201.0/24", ips: "251 Addresses", status: "Isolated Multi-AZ DB Zone" }
                             ].map((row, rIdx) => (
                               <tr key={rIdx} className="hover:bg-stone-50/50">
                                 <td className="p-3 font-mono font-bold text-stone-800">{row.name}</td>
@@ -623,10 +630,12 @@ export default function HandsOnLabs() {
                           </thead>
                           <tbody className="divide-y divide-stone-150">
                             {[
-                              { entity: "ALB Security Group", dir: "Ingress (Incoming)", proto: "TCP", ports: "Port 80", source: "0.0.0.0/0 (Any Public Internet Client)" },
-                              { entity: "ALB Security Group", dir: "Egress (Outgoing)", proto: "TCP", ports: "Port 80", source: "7.8.0.0/16 (Internal VPC Subnet Scope)" },
-                              { entity: "EC2 Security Group", dir: "Ingress (Incoming)", proto: "TCP", ports: "Port 80", source: "sg-0abc12345alb (Exclusive ALB Group Reference)" },
-                              { entity: "EC2 Security Group", dir: "Egress (Outgoing)", proto: "TCP", ports: "Port 80 / 443", source: "0.0.0.0/0 (Outbound Routing via Managed NAT)" }
+                              { entity: "ALB Security Group", dir: "Ingress (Incoming)", proto: "TCP", ports: "Port 80 / 443", source: "0.0.0.0/0 (Public Edge Clients / Route 53 / ACM)" },
+                              { entity: "ALB Security Group", dir: "Egress (Outgoing)", proto: "TCP", ports: "Port 80", source: "7.8.0.0/16 (Internal App Subnet Scope)" },
+                              { entity: "EC2 App Security Group", dir: "Ingress (Incoming)", proto: "TCP", ports: "Port 80", source: "sg-0alb12345 (Exclusive ALB Security Group Reference)" },
+                              { entity: "EC2 App Security Group", dir: "Egress (Outgoing)", proto: "TCP", ports: "Port 3306 / 5432", source: "sg-0db98765 (Internal DB Subnet Scope)" },
+                              { entity: "RDS DB Security Group", dir: "Ingress (Incoming)", proto: "TCP", ports: "Port 3306 / 5432", source: "sg-0app12345 (Exclusive App Tier EC2 Group Reference)" },
+                              { entity: "RDS DB Security Group", dir: "Egress (Outgoing)", proto: "N/A", ports: "None", source: "Strictly Blocked / Isolated Database Scope" }
                             ].map((row, rIdx) => (
                               <tr key={rIdx} className="hover:bg-stone-50/50">
                                 <td className="p-3 font-extrabold text-stone-900">{row.entity}</td>

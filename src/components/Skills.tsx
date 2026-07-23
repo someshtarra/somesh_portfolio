@@ -14,9 +14,10 @@ const skillCategories = [
     badgeBorder: "#BFDBFE",
     badgeText: "#1E40AF",
     skills: [
-      "AWS EC2", "VPC", "IAM", "S3", "Route Tables", "Internet Gateway",
-      "NAT Gateway", "Security Groups", "NACL", "Elastic Load Balancing",
-      "Auto Scaling", "CloudWatch", "Route 53", "RDS",
+      "AWS EC2", "VPC", "Amazon RDS", "IAM", "Route 53", "Certificate Manager (ACM)",
+      "CloudFront", "Amazon S3", "Amazon EFS", "Amazon EBS", "Elastic Load Balancer (ALB)",
+      "Auto Scaling", "CloudWatch", "Internet Gateway", "NAT Gateway", "Route Tables",
+      "Security Groups", "NACL",
     ],
   },
   {

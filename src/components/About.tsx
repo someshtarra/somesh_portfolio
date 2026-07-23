@@ -17,7 +17,7 @@ export default function About() {
       accent: "card-accent-blue",
       iconBg: "#FFF0F0",
       title: "Cloud, DevOps & Linux Enthusiast",
-      desc: "Hands-on with AWS EC2/VPC/IAM/S3, Linux administration, Bash scripting, and automation pipelines. Passionate about infrastructure and cybersecurity.",
+      desc: "Hands-on with AWS (EC2, VPC, RDS, IAM, Route 53, ACM, CloudFront, S3, EFS, EBS), Linux administration, Bash scripting, and automation pipelines.",
     },
     {
       icon: <Code className="w-6 h-6 text-[#FF7E00]" />,
